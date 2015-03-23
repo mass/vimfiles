@@ -1,0 +1,6 @@
+bundle/*
+!bundle/neobundle.vim
+
+.neobundle/
+.cache/
+.netrwhist
