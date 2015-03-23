@@ -19,7 +19,10 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'scrooloose/nerdtree'   " Directory navigation sidebar
+NeoBundle 'scrooloose/syntastic'  " Error checking for many languages
 NeoBundle 'bling/vim-airline'     " Better looking statusline
+NeoBundle 'jistr/vim-nerdtree-tabs' " Better tab support for NERDTree
 
 call neobundle#end()
 NeoBundleCheck
@@ -68,6 +71,13 @@ hi ColorColumn ctermbg=3          " Gold
 hi CursorColumn ctermbg=0         " Dark grey
 hi CursorLine cterm=bold ctermbg=0 " Dark grey, bold
 
+" ===== Keymaps ====================================================================================
+nnoremap <silent> <leader>R :so ~/.vimrc<cr> " Quick reload of vimrc
+nnoremap Y y$                     " More logical mapping for Y
+nnoremap <silent> <right> :bn<cr> " Remap right to switch between buffers
+nnoremap <silent> <left> :bp<cr>  " Remap left to switch between buffers
+nnoremap <silent> <leader>n :nohlsearch<cr> " Use <leader>n to clear highlighting from a search
+
 " ===== Indentation ================================================================================
 set nocopyindent                  " Don't use structure of current line when copying indent
 set expandtab                     " Expand tabs into spaces
@@ -86,12 +96,20 @@ set tabstop=2                     " Number of spaces that a tab counts for
 
 " ===== Trailing Whitespace ========================================================================
 match ErrorMsg '\s\+\%#\@<!$'      " Highlight trailing whitespace
+nnoremap <silent> <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+        " Strip trailing whitespace with <leader>s
+autocmd FileType c,cpp,java,tex autocmd BufWritePre * :%s/\s\+$//e " Del trailing whitespace on save
 
-" Strip trailing whitespace with <leader>S
-nnoremap <silent> <leader>S :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+" ===== NERDTree ===================================================================================
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR> " Open/close tabs with \t
 
-" Delete trailing whitespace on save
-autocmd FileType c,cpp,java,tex autocmd BufWritePre * :%s/\s\+$//e
+" ===== Syntastic ==================================================================================
+let g:syntastic_error_symbol = '✘' " Symbol for errors
+let g:syntastic_warning_symbol = "▲" " Symbol for warnings
+
+"let g:syntastic_cpp_include_dirs = ['../include', 'include', '../common']
+"let g:syntastic_python_checkers = []
+"let g:syntastic_tex_chktex_args = '-n29'
 
 " ===== vim-airline ================================================================================
 set laststatus=2                  " Last window always has a status line
@@ -99,6 +117,6 @@ let g:airline_detect_paste=1      " Show PASTE if in paste mode
 let g:airline#extensions#tabline#enabled=1 " Show vim-airline for tabs as well
 let g:airline#extensions#tabline#left_sep=' ' " Use straight tabs
 let g:airline#extensions#tabline#left_alt_sep='|' " Use straight tabs
-let g:airline_powerline_fonts=0   " Disallow use of special symbol fonts
+let g:airline_powerline_fonts=1   " Allow use of special symbol fonts
 let g:airline_theme='ubaryd'      " Set airline color theme
 
