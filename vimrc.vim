@@ -5,13 +5,12 @@
 "
 " Inspired by:
 "   -https://github.com/avp/vimfiles
-"   -https://github.com/jez/dotfiles
+"   -https://github.com/jez/vim-as-an-ide
 " ==================================================================================================
 
 set nocompatible                  " Modern vim mode
 
 " ===== Neobundle ==================================================================================
-
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
@@ -19,10 +18,15 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+NeoBundle 'Raimondi/delimitMate'  " Insert matching delimiters
 NeoBundle 'scrooloose/nerdtree'   " Directory navigation sidebar
 NeoBundle 'scrooloose/syntastic'  " Error checking for many languages
 NeoBundle 'bling/vim-airline'     " Better looking statusline
+NeoBundle 'tpope/vim-fugitive'    " Git wrapper for vim
+NeoBundle 'airblade/vim-gitgutter' " Shows +/- next to changed lines in git repo
 NeoBundle 'jistr/vim-nerdtree-tabs' " Better tab support for NERDTree
+NeoBundle 'tpope/vim-repeat'      " Use . with plugins
+NeoBundle 'tpope/vim-unimpaired'  " Useful pairs of mappings
 
 call neobundle#end()
 NeoBundleCheck
@@ -46,9 +50,11 @@ set mouse=a                       " Use the mouse in all modes
 set ruler                         " Show cursor position always
 set scrolloff=5                   " Don't let the cursor touch the edge of the viewport
 set showcmd                       " Display incomplete commands as they are typed
+set splitbelow                    " New windows go below the current
+set splitright                    " New windows go right of the current
 set noswapfile                    " Don't use a swap file for buffers
 set tildeop                       " Use ~ to toggle case
-set timeoutlen=500                " Wait 500ms for mapping delays
+set timeoutlen=1000               " Wait 500ms for mapping delays
 set ttimeoutlen=20                " Wait 20ms for key code delays
 set title                         " Show filename title at the top
 set undolevels=100                " Maximum of 100 undo/redo changes
@@ -78,6 +84,11 @@ nnoremap <silent> <right> :bn<cr> " Remap right to switch between buffers
 nnoremap <silent> <left> :bp<cr>  " Remap left to switch between buffers
 nnoremap <silent> <leader>n :nohlsearch<cr> " Use <leader>n to clear highlighting from a search
 
+nnoremap <C-h> <C-w>h             " Move one window to the left
+nnoremap <C-j> <C-w>j             " Move one window down
+nnoremap <C-k> <C-w>k             " Move one window up
+nnoremap <C-l> <C-w>l             " Move one window to the right
+
 " ===== Indentation ================================================================================
 set nocopyindent                  " Don't use structure of current line when copying indent
 set expandtab                     " Expand tabs into spaces
@@ -100,12 +111,14 @@ nnoremap <silent> <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl
         " Strip trailing whitespace with <leader>s
 autocmd FileType c,cpp,java,tex autocmd BufWritePre * :%s/\s\+$//e " Del trailing whitespace on save
 
+" ===== Plugin Settings ============================================================================
+
 " ===== NERDTree ===================================================================================
-nmap <silent> <leader>t :NERDTreeTabsToggle<CR> " Open/close tabs with \t
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR> " Open/close NERDTree with \t
 
 " ===== Syntastic ==================================================================================
-let g:syntastic_error_symbol = '✘' " Symbol for errors
-let g:syntastic_warning_symbol = "▲" " Symbol for warnings
+let g:syntastic_error_symbol='✘'   " Symbol for errors
+let g:syntastic_warning_symbol="▲" " Symbol for warnings
 
 "let g:syntastic_cpp_include_dirs = ['../include', 'include', '../common']
 "let g:syntastic_python_checkers = []
@@ -114,9 +127,15 @@ let g:syntastic_warning_symbol = "▲" " Symbol for warnings
 " ===== vim-airline ================================================================================
 set laststatus=2                  " Last window always has a status line
 let g:airline_detect_paste=1      " Show PASTE if in paste mode
+let g:airline_powerline_fonts=1   " Allow use of special symbol fonts
+let g:airline_theme='ubaryd'      " Set airline color theme
+
+let g:airline#extensions#hunks#enabled=1 " Show git info
+let g:airline#extensions#hunks#non_zero_only=0 " Always show git info
 let g:airline#extensions#tabline#enabled=1 " Show vim-airline for tabs as well
 let g:airline#extensions#tabline#left_sep=' ' " Use straight tabs
 let g:airline#extensions#tabline#left_alt_sep='|' " Use straight tabs
-let g:airline_powerline_fonts=1   " Allow use of special symbol fonts
-let g:airline_theme='ubaryd'      " Set airline color theme
+
+" ===== vim-gitgutter ==============================================================================
+hi clear SignColumn                " Clear background of non-changed lines in the gutter
 
