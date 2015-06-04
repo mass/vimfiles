@@ -74,8 +74,8 @@ set showtabline=2                 " Always show tab line
 colorscheme elflord               " Change colorscheme. Do this before any custom changes
 
 hi ColorColumn ctermbg=3          " Gold
-hi CursorColumn ctermbg=0         " Dark grey
-hi CursorLine cterm=bold ctermbg=0 " Dark grey, bold
+hi CursorColumn ctermbg=235       " Grey15
+hi CursorLine cterm=bold ctermbg=235 " Grey15, bold
 
 " ===== Keymaps ====================================================================================
 nnoremap <silent> <leader>R :so ~/.vimrc<cr> " Quick reload of vimrc
@@ -92,10 +92,11 @@ nnoremap <C-l> <C-w>l             " Move one window to the right
 " ===== Indentation ================================================================================
 set nocopyindent                  " Don't use structure of current line when copying indent
 set expandtab                     " Expand tabs into spaces
-set shiftwidth=2                  " Number of spaces for each step of indent
+set shiftwidth=4                  " Number of spaces for each step of indent
 set smartindent                   " Indent intelligently when inserting a newline
 set smarttab                      " <Tab> in front of line inserts smart number of spaces
-set tabstop=2                     " Number of spaces that a tab counts for
+set softtabstop=4                 " Proper indentation in insert mode
+set tabstop=4                     " Number of spaces that a tab counts for
 
 " ===== Folding ====================================================================================
 "set fillchars=fold:\ ,            " Get rid of obnoxious '-' characters in folds
