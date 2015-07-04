@@ -4,3 +4,5 @@ bundle/*
 .neobundle/
 .cache/
 .netrwhist
+
+spell/

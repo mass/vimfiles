@@ -26,6 +26,7 @@ NeoBundle 'tpope/vim-fugitive'    " Git wrapper for vim
 NeoBundle 'airblade/vim-gitgutter' " Shows +/- next to changed lines in git repo
 NeoBundle 'jistr/vim-nerdtree-tabs' " Better tab support for NERDTree
 NeoBundle 'tpope/vim-repeat'      " Use . with plugins
+NeoBundle 'justinmk/vim-sneak'    " Useful navigation using s{char}{char}
 NeoBundle 'tpope/vim-unimpaired'  " Useful pairs of mappings
 
 call neobundle#end()
@@ -43,6 +44,7 @@ set cryptmethod=blowfish          " Use stronger cyrpt method
 set debug=msg                     " Show more error messages
 set encoding=utf-8                " Use utf-8 as character encoding
 set fsync                         " Ensure write to disk after save
+set hidden                        " Can switch buffers without saving
 set history=100                   " Keep 100 lines of history
 set ignorecase                    " Ignore case in search strings
 set incsearch                     " Show matching as search string is typed
@@ -57,9 +59,13 @@ set tildeop                       " Use ~ to toggle case
 set timeoutlen=1000               " Wait 500ms for mapping delays
 set ttimeoutlen=20                " Wait 20ms for key code delays
 set title                         " Show filename title at the top
+set ttyfast                       " Optimize for faster terminal connections
+set ttymouse=sgr                  " Fix mouse interaction for larger screens
 set undolevels=100                " Maximum of 100 undo/redo changes
 set novisualbell                  " Don't use the visual bell
 set nowritebackup                 " Don't backup buffer writes
+
+let mapleader=" "                 " Use <space> as the leader
 
 " ===== Appearance =================================================================================
 set background=dark               " Use dark background
@@ -69,25 +75,36 @@ set cursorline                    " Draw reference line at current line
 set number                        " Use line numbers
 set numberwidth=5                 " Use 5 columns for line numbers
 set norelativenumber              " Disable relative numbers
+set noshowmode                    " Don't display an arbitrary --INSERT--
 set showtabline=2                 " Always show tab line
 
-colorscheme elflord               " Change colorscheme. Do this before any custom changes
+colorscheme mass                  " Change colorscheme. Do this before any custom changes
 
 hi ColorColumn ctermbg=3          " Gold
 hi CursorColumn ctermbg=235       " Grey15
 hi CursorLine cterm=bold ctermbg=235 " Grey15, bold
 
 " ===== Keymaps ====================================================================================
-nnoremap <silent> <leader>R :so ~/.vimrc<cr> " Quick reload of vimrc
-nnoremap Y y$                     " More logical mapping for Y
-nnoremap <silent> <right> :bn<cr> " Remap right to switch between buffers
-nnoremap <silent> <left> :bp<cr>  " Remap left to switch between buffers
-nnoremap <silent> <leader>n :nohlsearch<cr> " Use <leader>n to clear highlighting from a search
 
-nnoremap <C-h> <C-w>h             " Move one window to the left
-nnoremap <C-j> <C-w>j             " Move one window down
-nnoremap <C-k> <C-w>k             " Move one window up
-nnoremap <C-l> <C-w>l             " Move one window to the right
+" Quick reload of vimrc
+nnoremap <silent> <leader>R :so ~/.vimrc<cr>
+" More logical mapping for Y
+nnoremap Y y$
+" Remap right to switch between buffers
+nnoremap <silent> <right> :bn<cr>
+" Remap left to switch between buffers
+nnoremap <silent> <left> :bp<cr>
+" Use <leader>n to clear highlighting from a search
+nnoremap <silent> <leader>n :nohlsearch<cr>
+
+" Move one window to the left
+nnoremap <C-h> <C-w>h
+" Move one window down
+nnoremap <C-j> <C-w>j
+" Move one window up
+nnoremap <C-k> <C-w>k
+" Move one window to the right
+nnoremap <C-l> <C-w>l
 
 " ===== Indentation ================================================================================
 set nocopyindent                  " Don't use structure of current line when copying indent
@@ -108,14 +125,15 @@ set tabstop=4                     " Number of spaces that a tab counts for
 
 " ===== Trailing Whitespace ========================================================================
 match ErrorMsg '\s\+\%#\@<!$'      " Highlight trailing whitespace
+" Strip trailing whitespace with <leader>s
 nnoremap <silent> <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-        " Strip trailing whitespace with <leader>s
 autocmd FileType c,cpp,java,tex autocmd BufWritePre * :%s/\s\+$//e " Del trailing whitespace on save
 
 " ===== Plugin Settings ============================================================================
 
 " ===== NERDTree ===================================================================================
-nmap <silent> <leader>t :NERDTreeTabsToggle<CR> " Open/close NERDTree with \t
+" Open/close NERDTree with <leader>t
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 
 " ===== Syntastic ==================================================================================
 let g:syntastic_error_symbol='✘'   " Symbol for errors
@@ -138,5 +156,8 @@ let g:airline#extensions#tabline#left_sep=' ' " Use straight tabs
 let g:airline#extensions#tabline#left_alt_sep='|' " Use straight tabs
 
 " ===== vim-gitgutter ==============================================================================
-hi clear SignColumn                " Clear background of non-changed lines in the gutter
+hi clear SignColumn               " Clear background of non-changed lines in the gutter
+
+" ===== vim-sneak ==================================================================================
+let g:sneak#streak = 1            " Label occurrences with handy letters for easy navigation
 
