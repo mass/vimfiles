@@ -69,7 +69,7 @@ let mapleader=" "                 " Use <space> as the leader
 
 " ===== Appearance =================================================================================
 set background=dark               " Use dark background
-set colorcolumn=100               " Draw reference line at column 100
+set colorcolumn=80,100            " Draw reference line at columns 80 and 100
 set cursorcolumn                  " Draw reference line at current column
 set cursorline                    " Draw reference line at current line
 set number                        " Use line numbers
