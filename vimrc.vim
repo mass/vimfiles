@@ -18,16 +18,17 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Raimondi/delimitMate'  " Insert matching delimiters
-NeoBundle 'scrooloose/nerdtree'   " Directory navigation sidebar
-NeoBundle 'scrooloose/syntastic'  " Error checking for many languages
-NeoBundle 'bling/vim-airline'     " Better looking statusline
-NeoBundle 'tpope/vim-fugitive'    " Git wrapper for vim
-NeoBundle 'airblade/vim-gitgutter' " Shows +/- next to changed lines in git repo
-NeoBundle 'jistr/vim-nerdtree-tabs' " Better tab support for NERDTree
-NeoBundle 'tpope/vim-repeat'      " Use . with plugins
-NeoBundle 'justinmk/vim-sneak'    " Useful navigation using s{char}{char}
-NeoBundle 'tpope/vim-unimpaired'  " Useful pairs of mappings
+NeoBundle 'Raimondi/delimitMate'           " Insert matching delimiters
+NeoBundle 'scrooloose/nerdtree'            " Directory navigation sidebar
+NeoBundle 'scrooloose/syntastic'           " Error checking for many languages
+NeoBundle 'vim-airline/vim-airline'        " Better looking statusline
+NeoBundle 'vim-airline/vim-airline-themes' " Better looking statusline
+NeoBundle 'tpope/vim-fugitive'             " Git wrapper for vim
+NeoBundle 'airblade/vim-gitgutter'         " Shows +/- next to changed lines in git repo
+NeoBundle 'jistr/vim-nerdtree-tabs'        " Better tab support for NERDTree
+NeoBundle 'tpope/vim-repeat'               " Use . with plugins
+NeoBundle 'justinmk/vim-sneak'             " Useful navigation using s{char}{char}
+NeoBundle 'tpope/vim-unimpaired'           " Useful pairs of mappings
 
 call neobundle#end()
 NeoBundleCheck
