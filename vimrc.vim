@@ -10,28 +10,25 @@
 
 set nocompatible                  " Modern vim mode
 
-" ===== Neobundle ==================================================================================
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+" ===== vim-plug ===================================================================================
+call plug#begin('~/.vim/plug')
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+Plug 'scrooloose/nerdtree'                 " Directory navigation sidebar
+Plug 'jistr/vim-nerdtree-tabs'             " Better tab support for NERDTree
 
-NeoBundle 'Raimondi/delimitMate'           " Insert matching delimiters
-NeoBundle 'scrooloose/nerdtree'            " Directory navigation sidebar
-NeoBundle 'scrooloose/syntastic'           " Error checking for many languages
-NeoBundle 'vim-airline/vim-airline'        " Better looking statusline
-NeoBundle 'vim-airline/vim-airline-themes' " Better looking statusline
-NeoBundle 'tpope/vim-fugitive'             " Git wrapper for vim
-NeoBundle 'airblade/vim-gitgutter'         " Shows +/- next to changed lines in git repo
-NeoBundle 'jistr/vim-nerdtree-tabs'        " Better tab support for NERDTree
-NeoBundle 'tpope/vim-repeat'               " Use . with plugins
-NeoBundle 'justinmk/vim-sneak'             " Useful navigation using s{char}{char}
-NeoBundle 'tpope/vim-unimpaired'           " Useful pairs of mappings
+Plug 'vim-airline/vim-airline'             " Better looking statusline
+Plug 'vim-airline/vim-airline-themes'      " Better looking statusline
 
-call neobundle#end()
-NeoBundleCheck
+Plug 'airblade/vim-gitgutter'              " Shows +/- next to changed lines in git repo
+
+"NeoBundle 'Raimondi/delimitMate'           " Insert matching delimiters
+"NeoBundle 'scrooloose/syntastic'           " Error checking for many languages
+"NeoBundle 'tpope/vim-fugitive'             " Git wrapper for vim
+"NeoBundle 'tpope/vim-repeat'               " Use . with plugins
+"NeoBundle 'justinmk/vim-sneak'             " Useful navigation using s{char}{char}
+"NeoBundle 'tpope/vim-unimpaired'           " Useful pairs of mappings
+
+call plug#end()
 
 " ===== General Settings ===========================================================================
 
@@ -150,15 +147,15 @@ let g:airline_detect_paste=1      " Show PASTE if in paste mode
 let g:airline_powerline_fonts=1   " Allow use of special symbol fonts
 let g:airline_theme='ubaryd'      " Set airline color theme
 
-let g:airline#extensions#hunks#enabled=1 " Show git info
-let g:airline#extensions#hunks#non_zero_only=0 " Always show git info
-let g:airline#extensions#tabline#enabled=1 " Show vim-airline for tabs as well
-let g:airline#extensions#tabline#left_sep=' ' " Use straight tabs
+let g:airline#extensions#hunks#enabled=1          " Show git info
+let g:airline#extensions#hunks#non_zero_only=0    " Always show git info
+let g:airline#extensions#tabline#enabled=1        " Show vim-airline for tabs as well
+let g:airline#extensions#tabline#left_sep=' '     " Use straight tabs
 let g:airline#extensions#tabline#left_alt_sep='|' " Use straight tabs
 
 " ===== vim-gitgutter ==============================================================================
 hi clear SignColumn               " Clear background of non-changed lines in the gutter
 
 " ===== vim-sneak ==================================================================================
-let g:sneak#streak = 1            " Label occurrences with handy letters for easy navigation
+"let g:sneak#streak = 1            " Label occurrences with handy letters for easy navigation
 

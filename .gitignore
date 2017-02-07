@@ -1,8 +1,7 @@
-bundle/*
-!bundle/neobundle.vim
+plug/
+plug/*
 
-.neobundle/
 .cache/
-.netrwhist
-
 spell/
+
+.netrwhist
