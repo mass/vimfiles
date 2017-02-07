@@ -48,8 +48,9 @@ hi WarningMsg guifg=white guibg=#FF6C60 gui=BOLD ctermfg=white ctermbg=red cterm
 hi LongLineWarning guifg=NONE guibg=#371F1C gui=underline ctermfg=NONE ctermbg=NONE cterm=underline
 
 if version >= 700 " Vim 7.x specific colors
- hi CursorLine guifg=NONE guibg=#121212 gui=NONE ctermfg=NONE ctermbg=NONE cterm=BOLD
- hi CursorColumn guifg=NONE guibg=#121212 gui=NONE ctermfg=NONE ctermbg=darkgray cterm=BOLD
+ hi ColorColumn guifg=NONE guibg=#121212 gui=NONE ctermfg=NONE ctermbg=52 cterm=NONE
+ hi CursorLine guifg=NONE guibg=#121212 gui=NONE ctermfg=NONE ctermbg=236 cterm=bold
+ hi CursorColumn guifg=NONE guibg=#121212 gui=NONE ctermfg=NONE ctermbg=236 cterm=NONE
  hi MatchParen guifg=#f6f3e8 guibg=#857b6f gui=BOLD ctermfg=white ctermbg=darkgray cterm=NONE
  hi Pmenu guifg=#f6f3e8 guibg=#444444 gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
  hi PmenuSel guifg=#000000 guibg=#cae682 gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
@@ -58,18 +59,18 @@ endif
 
 " Syntax highlighting
 hi Comment guifg=#7C7C7C guibg=NONE gui=NONE ctermfg=gray ctermbg=NONE cterm=NONE
-hi String guifg=#A8FF60 guibg=NONE gui=NONE ctermfg=47 ctermbg=NONE cterm=NONE
+hi String guifg=#A8FF60 guibg=NONE gui=NONE ctermfg=33 ctermbg=NONE cterm=NONE
 hi Number guifg=#07AADD guibg=NONE gui=NONE ctermfg=39 ctermbg=NONE cterm=NONE
 
 hi Keyword guifg=#F8A089 guibg=NONE gui=NONE ctermfg=194 ctermbg=NONE cterm=NONE
-hi PreProc guifg=#96CBFE guibg=NONE gui=NONE ctermfg=45 ctermbg=NONE cterm=NONE
+hi PreProc guifg=#96CBFE guibg=NONE gui=NONE ctermfg=white ctermbg=NONE cterm=NONE
 hi Conditional guifg=#FFFFB6 guibg=NONE gui=NONE ctermfg=194 ctermbg=NONE cterm=NONE " if else end
 
-hi Todo guifg=#000000 guibg=#00ff00 gui=NONE ctermfg=black ctermbg=green cterm=NONE
+hi Todo guifg=#000000 guibg=#00ff00 gui=NONE ctermfg=black ctermbg=yellow cterm=bold
 hi Constant guifg=#99CC99 guibg=NONE gui=NONE ctermfg=cyan ctermbg=NONE cterm=NONE
 
 hi Identifier guifg=#C6C5FE guibg=NONE gui=NONE ctermfg=cyan ctermbg=NONE cterm=NONE
-hi Function guifg=#9AD5C1 guibg=NONE gui=NONE ctermfg=49 ctermbg=NONE cterm=NONE
+hi Function guifg=#9AD5C1 guibg=NONE gui=NONE ctermfg=red ctermbg=NONE cterm=NONE
 hi Type guifg=#6FB412 guibg=NONE gui=NONE ctermfg=40 ctermbg=NONE cterm=NONE
 hi Statement guifg=#FFFFB6 guibg=NONE gui=NONE ctermfg=194 ctermbg=NONE cterm=NONE
 

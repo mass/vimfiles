@@ -21,8 +21,9 @@ Plug 'vim-airline/vim-airline-themes'      " Better looking statusline
 
 Plug 'airblade/vim-gitgutter'              " Shows +/- next to changed lines in git repo
 
+Plug 'octol/vim-cpp-enhanced-highlight'    " Better c++ syntax highlighting
+
 "NeoBundle 'Raimondi/delimitMate'           " Insert matching delimiters
-"NeoBundle 'scrooloose/syntastic'           " Error checking for many languages
 "NeoBundle 'tpope/vim-fugitive'             " Git wrapper for vim
 "NeoBundle 'tpope/vim-repeat'               " Use . with plugins
 "NeoBundle 'justinmk/vim-sneak'             " Useful navigation using s{char}{char}
@@ -78,10 +79,6 @@ set showtabline=2                 " Always show tab line
 
 colorscheme mass                  " Change colorscheme. Do this before any custom changes
 
-hi ColorColumn ctermbg=3          " Gold
-hi CursorColumn ctermbg=235       " Grey15
-hi CursorLine cterm=bold ctermbg=235 " Grey15, bold
-
 " ===== Keymaps ====================================================================================
 
 " Quick reload of vimrc
@@ -107,11 +104,11 @@ nnoremap <C-l> <C-w>l
 " ===== Indentation ================================================================================
 set nocopyindent                  " Don't use structure of current line when copying indent
 set expandtab                     " Expand tabs into spaces
-set shiftwidth=4                  " Number of spaces for each step of indent
+set shiftwidth=2                  " Number of spaces for each step of indent
 set smartindent                   " Indent intelligently when inserting a newline
 set smarttab                      " <Tab> in front of line inserts smart number of spaces
-set softtabstop=4                 " Proper indentation in insert mode
-set tabstop=4                     " Number of spaces that a tab counts for
+set softtabstop=2                 " Proper indentation in insert mode
+set tabstop=2                     " Number of spaces that a tab counts for
 
 " ===== Folding ====================================================================================
 "set fillchars=fold:\ ,            " Get rid of obnoxious '-' characters in folds
@@ -132,14 +129,10 @@ autocmd FileType c,cpp,java,tex autocmd BufWritePre * :%s/\s\+$//e " Del trailin
 " ===== NERDTree ===================================================================================
 " Open/close NERDTree with <leader>t
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-
-" ===== Syntastic ==================================================================================
-let g:syntastic_error_symbol='✘'   " Symbol for errors
-let g:syntastic_warning_symbol="▲" " Symbol for warnings
-
-"let g:syntastic_cpp_include_dirs = ['../include', 'include', '../common']
-"let g:syntastic_python_checkers = []
-"let g:syntastic_tex_chktex_args = '-n29'
+let NERDTreeQuitOnOpen = 1         " Automatically quit when opening file
+let NERDTreeMinimalUI = 1          "
+let NERDTreeDirArrows = 1          "
+let NERDTreeShowLineNumbers = 1    " Show line numbers in the NERDTree buffer
 
 " ===== vim-airline ================================================================================
 set laststatus=2                  " Last window always has a status line
@@ -159,3 +152,6 @@ hi clear SignColumn               " Clear background of non-changed lines in the
 " ===== vim-sneak ==================================================================================
 "let g:sneak#streak = 1            " Label occurrences with handy letters for easy navigation
 
+" ===== vim-cpp-enhanced-highlight =================================================================
+let g:cpp_class_scope_highlight = 1 " Highlight class scopes
+let g:cpp_experimental_template_highlight = 1 " Highlight template functions
