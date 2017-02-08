@@ -13,15 +13,23 @@ set nocompatible                  " Modern vim mode
 " ===== vim-plug ===================================================================================
 call plug#begin('~/.vim/plug')
 
-Plug 'scrooloose/nerdtree'                 " Directory navigation sidebar
-Plug 'jistr/vim-nerdtree-tabs'             " Better tab support for NERDTree
+Plug 'scrooloose/nerdtree',                " Directory navigation sidebar
+      \ {'on': 'NERDTreeToggle'}
+Plug 'jistr/vim-nerdtree-tabs',            " Better tab support for NERDTree
+      \ {'on': 'NERDTreeToggle'}
 
 Plug 'vim-airline/vim-airline'             " Better looking statusline
 Plug 'vim-airline/vim-airline-themes'      " Better looking statusline
 
 Plug 'airblade/vim-gitgutter'              " Shows +/- next to changed lines in git repo
 
-Plug 'octol/vim-cpp-enhanced-highlight'    " Better c++ syntax highlighting
+Plug 'ctrlpvim/ctrlp.vim',                 " Fuzzy file finder
+      \ {'on', 'asdf'}
+
+Plug 'octol/vim-cpp-enhanced-highlight',   " Better c++ syntax highlighting
+      \ {'for': 'cpp'}
+
+Plug 'w0rp/ale'                            " Asynchronous linter
 
 "NeoBundle 'Raimondi/delimitMate'           " Insert matching delimiters
 "NeoBundle 'tpope/vim-fugitive'             " Git wrapper for vim
@@ -128,11 +136,12 @@ autocmd FileType c,cpp,java,tex autocmd BufWritePre * :%s/\s\+$//e " Del trailin
 
 " ===== NERDTree ===================================================================================
 " Open/close NERDTree with <leader>t
+"TODO
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-let NERDTreeQuitOnOpen = 1         " Automatically quit when opening file
-let NERDTreeMinimalUI = 1          "
-let NERDTreeDirArrows = 1          "
-let NERDTreeShowLineNumbers = 1    " Show line numbers in the NERDTree buffer
+let NERDTreeQuitOnOpen = 1        " Automatically quit when opening file
+let NERDTreeMinimalUI = 1         "
+let NERDTreeDirArrows = 1         "
+let NERDTreeShowLineNumbers = 1   " Show line numbers in the NERDTree buffer
 
 " ===== vim-airline ================================================================================
 set laststatus=2                  " Last window always has a status line
@@ -140,18 +149,38 @@ let g:airline_detect_paste=1      " Show PASTE if in paste mode
 let g:airline_powerline_fonts=1   " Allow use of special symbol fonts
 let g:airline_theme='ubaryd'      " Set airline color theme
 
+"TODO: tagbar
 let g:airline#extensions#hunks#enabled=1          " Show git info
 let g:airline#extensions#hunks#non_zero_only=0    " Always show git info
+
 let g:airline#extensions#tabline#enabled=1        " Show vim-airline for tabs as well
 let g:airline#extensions#tabline#left_sep=' '     " Use straight tabs
 let g:airline#extensions#tabline#left_alt_sep='|' " Use straight tabs
 
+let g:airline#extensions#quickfix#enabled=1       " Display proper titles for loclist
+let g:airline#extensions#whitespace#enabled=1     " Detect whitespace errors
+
 " ===== vim-gitgutter ==============================================================================
 hi clear SignColumn               " Clear background of non-changed lines in the gutter
 
-" ===== vim-sneak ==================================================================================
-"let g:sneak#streak = 1            " Label occurrences with handy letters for easy navigation
+" ===== ctrlp.vim==== ==============================================================================
+let g:ctrlp_map='<c-p>'           " Remap c-p to run CtrlP plugin
+let g:ctrlp_cmd='CtrlP'           " Default command for c-p mapping
+"TODO
 
 " ===== vim-cpp-enhanced-highlight =================================================================
-let g:cpp_class_scope_highlight = 1 " Highlight class scopes
+let g:cpp_class_scope_highlight = 1           " Highlight class scopes
 let g:cpp_experimental_template_highlight = 1 " Highlight template functions
+
+" ===== ale ====================== =================================================================
+let g:ale_echo_msg_format='(%linter%)[%severity%]: %s' " Format of echo (bottom) message
+let g:ale_echo_msg_error_str='ERROR'  " Message shown for errors
+let g:ale_echo_msg_warning_str='WARN' " Message shown for warnings
+
+let g:ale_open_list=1             " Automatically open the loclist if errors found
+
+let g:ale_lint_on_save=1                        " Run the linters on save always
+let g:ale_linters = {'cpp': 'all'}              " Set the linters to use for various filetypes
+let g:ale_cpp_gcc_options='-std=c++11 -Wall'    " Change options sent to gcc for c++ files
+let g:ale_cpp_cppcheck_options='--enable=style' " Change options sent to gcc for c++ files
+
