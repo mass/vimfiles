@@ -31,6 +31,9 @@ Plug 'octol/vim-cpp-enhanced-highlight',         " Better c++ syntax highlightin
 
 Plug 'w0rp/ale'                                  " Asynchronous linter
 
+Plug 'scrooloose/nerdcommenter'                  " Comment better
+
+"Plug 'tpope/vim-surround'                        " Surround text with characters
 "NeoBundle 'Raimondi/delimitMate'                 " Insert matching delimiters
 "NeoBundle 'tpope/vim-fugitive'                   " Git wrapper for vim
 "NeoBundle 'tpope/vim-repeat'                     " Use . with plugins
@@ -48,7 +51,6 @@ set autoindent                                   " Copy indent from current line
 set nobackup                                     " Don't backup buffers
 set backspace=indent,eol,start                   " Backspace over everything
 set cryptmethod=blowfish                         " Use stronger cyrpt method
-set debug=msg                                    " Show more error messages
 set encoding=utf-8                               " Use utf-8 as character encoding
 set fsync                                        " Ensure write to disk after save
 set hidden                                       " Can switch buffers without saving
@@ -104,6 +106,8 @@ nnoremap <C-j> <C-w>j                            " Move one window down
 nnoremap <C-k> <C-w>k                            " Move one window up
 nnoremap <C-l> <C-w>l                            " Move one window to the right
 
+nmap <leader>cw viw<leader>cc                    " Comment out word under the cursor
+
 " ===== Indentation ================================================================================
 set nocopyindent                                 " Don't use structure of current line when copying indent
 set expandtab                                    " Expand tabs into spaces
@@ -126,8 +130,6 @@ match ErrorMsg '\s\+\%#\@<!$'                    " Highlight trailing whitespace
 
 nnoremap <silent> <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>
       \ :let @/=_s<Bar>:nohl<CR>                 " Strip trailing whitespace with <leader>s
-autocmd FileType c,cpp,java,tex
-      \ autocmd BufWritePre * :%s/\s\+$//e       " Del trailing whitespace on save
 
 " ===== Plugin Settings ============================================================================
 
@@ -180,4 +182,3 @@ let g:ale_lint_on_save=1                         " Run the linters on save alway
 let g:ale_linters = {'cpp': ['cppcheck']}        " Set the linters to use for various filetypes
 let g:ale_cpp_gcc_options='-std=c++11 -Wall'     " Change options sent to gcc for c++ files
 let g:ale_cpp_cppcheck_options='--enable=style'  " Change options sent to gcc for c++ files
-
