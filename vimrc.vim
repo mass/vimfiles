@@ -10,7 +10,10 @@
 
 set nocompatible                                 " Modern vim mode
 
-" ===== vim-plug ===================================================================================
+" ==================================================================================================
+" ===== Plugins (vim-plug) =========================================================================
+" ==================================================================================================
+
 call plug#begin('~/.vim/plug')
 
 Plug 'scrooloose/nerdtree',                      " Directory navigation sidebar
@@ -24,7 +27,7 @@ Plug 'vim-airline/vim-airline-themes'            " Better looking statusline
 Plug 'airblade/vim-gitgutter'                    " Shows +/- next to changed lines in git repo
 
 Plug 'ctrlpvim/ctrlp.vim',                       " Fuzzy file finder
-      \ {'on', 'asdf'}
+      \ {'on', 'CtrlP'}
 
 Plug 'octol/vim-cpp-enhanced-highlight',         " Better c++ syntax highlighting
       \ {'for': 'cpp'}
@@ -42,7 +45,9 @@ Plug 'scrooloose/nerdcommenter'                  " Comment better
 
 call plug#end()
 
+" ==================================================================================================
 " ===== General Settings ===========================================================================
+" ==================================================================================================
 
 filetype plugin indent on                        " Turns on filetype-specific plugins and indent files
 syntax on                                        " Turns on syntax highlighting
@@ -63,6 +68,7 @@ set scrolloff=5                                  " Don't let the cursor touch th
 set showcmd                                      " Display incomplete commands as they are typed
 set splitbelow                                   " New windows go below the current
 set splitright                                   " New windows go right of the current
+set nostartofline                                " Keep cursor in the same column with certain moves
 set noswapfile                                   " Don't use a swap file for buffers
 set tildeop                                      " Use ~ to toggle case
 set timeoutlen=1000                              " Wait 500ms for mapping delays
@@ -74,11 +80,9 @@ set undolevels=100                               " Maximum of 100 undo/redo chan
 set novisualbell                                 " Don't use the visual bell
 set nowritebackup                                " Don't backup buffer writes
 
-let mapleader=" "                                " Use <space> as the leader
-
 " ===== Appearance =================================================================================
 set background=dark                              " Use dark background
-set colorcolumn=80,100                           " Draw reference line at columns 80 and 100
+set colorcolumn=80,100,120                       " Draw reference line at columns 80, 100, 120
 set cursorcolumn                                 " Draw reference line at current column
 set cursorline                                   " Draw reference line at current line
 set number                                       " Use line numbers
@@ -86,27 +90,43 @@ set numberwidth=5                                " Use 5 columns for line number
 set norelativenumber                             " Disable relative numbers
 set noshowmode                                   " Don't display an arbitrary --INSERT--
 set showtabline=2                                " Always show tab line
+set hlsearch                                     " Highlight search matches
 
 colorscheme mass                                 " Change colorscheme. Do this before any custom changes
 
 " ===== Keymaps ====================================================================================
 
-nnoremap <silent> <leader>R :so ~/.vimrc<cr>     " Quick reload of vimrc
+" Use <space> as <leader>
+nnoremap <space> <nop>
+let mapleader = " "
 
-nnoremap Y y$                                    " More logical mapping for Y
-nnoremap <c-g> G                                 " Fix for fat-fingering c-g instead of G
+" Quick reload of vimrc
+nnoremap <silent> <leader>R :so ~/.vimrc<cr>
 
-nnoremap <silent> <right> :bn<cr>                " Remap right to switch between buffers
-nnoremap <silent> <left> :bp<cr>                 " Remap left to switch between buffers
+" More logical mapping for Y
+nnoremap Y y$
 
-nnoremap <silent> <leader>n :nohlsearch<cr>      " Use <leader>n to clear highlighting from a search
+" Fix for fat-fingering c-g instead of G
+nnoremap <c-g> G
 
-nnoremap <C-h> <C-w>h                            " Move one window to the left
-nnoremap <C-j> <C-w>j                            " Move one window down
-nnoremap <C-k> <C-w>k                            " Move one window up
-nnoremap <C-l> <C-w>l                            " Move one window to the right
+" Remap left/right to switch between buffers
+nnoremap <silent> <right> :bn<cr>
+nnoremap <silent> <left> :bp<cr>
 
-nmap <leader>cw viw<leader>cc                    " Comment out word under the cursor
+" Use <leader>n to clear highlighting from a search
+nnoremap <silent> <leader>n :nohlsearch<cr>
+
+" Use // to search visually highlighted text
+vnoremap // y/\V<C-R>"<CR>
+
+" Use control-hjkl for window (split) movement
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Comment out word under the cursor
+nmap <leader>cw viw<leader>cc
 
 " ===== Indentation ================================================================================
 set nocopyindent                                 " Don't use structure of current line when copying indent
@@ -118,28 +138,38 @@ set softtabstop=2                                " Proper indentation in insert 
 set tabstop=2                                    " Number of spaces that a tab counts for
 
 " ===== Folding ====================================================================================
-"set fillchars=fold:\ ,                           " Get rid of obnoxious '-' characters in folds
-"set foldcolumn=1                                 " Display section for code folding
-"set nofoldenable                                 " All folds start open
-"set foldlevel=0                                  " Close all folds by default
-"set foldmethod=indent                            " Lines of equal indent form a fold
-"set foldnestmax=5                                " Max number of nested folds
+"TODO
 
-" ===== Trailing Whitespace ========================================================================
-match ErrorMsg '\s\+\%#\@<!$'                    " Highlight trailing whitespace
+" ===== Misc =======================================================================================
 
-nnoremap <silent> <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar>
-      \ :let @/=_s<Bar>:nohl<CR>                 " Strip trailing whitespace with <leader>s
+" Highlight trailing whitespace
+match ErrorMsg '\s\+\%#\@<!$'
 
+" Strip trailing whitespace with <leader>s
+nnoremap <silent> <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar> :let @/=_s<Bar>:nohl<CR>
+
+" Show highlight group test script
+nnoremap <leader>hit :so $VIMRUNTIME/syntax/hitest.vim<CR>
+
+" Show currently active highlight groups
+function! SynStack()
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+nnoremap <leader>hi :call SynStack()<CR>
+
+" ==================================================================================================
 " ===== Plugin Settings ============================================================================
+" ==================================================================================================
 
 " ===== NERDTree ===================================================================================
 "TODO
-nmap <silent> <leader>t :NERDTreeTabsToggle<CR>  " Open/close NERDTree with <leader>t
 let NERDTreeQuitOnOpen = 1                       " Automatically quit when opening file
 let NERDTreeMinimalUI = 1                        " TODO
 let NERDTreeDirArrows = 1                        " TODO
 let NERDTreeShowLineNumbers = 1                  " Show line numbers in the NERDTree buffer
+
+" Open/close NERDTree with <leader>t
+nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 
 " ===== vim-airline ================================================================================
 set laststatus=2                                 " Last window always has a status line

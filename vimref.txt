@@ -11,3 +11,5 @@ Navigation
 Misc
 #############################
 <l>cw - Comment out word under cursor
+<l>hi - Show currently active highlight groups
+<l>hit - Show highlight group test page
