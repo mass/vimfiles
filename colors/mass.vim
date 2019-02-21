@@ -91,3 +91,20 @@ hi link Debug Special
 " Special for C
 hi cFunction       ctermfg=brown       ctermbg=NONE        cterm=NONE
 hi cIdentifier     ctermfg=brown       ctermbg=NONE        cterm=NONE
+
+" CtrlP
+hi link CtrlPMatch        Search
+hi link CtrlPNoEntries    Error
+hi link CtrlPLinePre      LineNr
+hi link CtrlPPrtBase      Comment
+hi link CtrlPPrtText      Normal
+hi link CtrlPPrtCursor    Cursor
+hi link CtrlPBufferNr     LineNr
+hi link CtrlPBufferInd    LineNr
+hi link CtrlPBufferHid    Normal
+hi link CtrlPBufferHidMod ColorColumn
+hi link CtrlPBufferVis    Normal
+hi link CtrlPBufferVisMod ColorColumn
+hi link CtrlPBufferCur    String
+hi link CtrlPBufferCurMod Function
+hi link CtrlPBufferPath   Comment

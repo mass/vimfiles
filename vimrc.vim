@@ -16,15 +16,8 @@ set nocompatible                                 " Modern vim mode
 
 call plug#begin('~/.vim/plug')
 
-Plug 'scrooloose/nerdtree',                      " Directory navigation sidebar
-      \ {'on': 'NERDTreeToggle'}
-Plug 'jistr/vim-nerdtree-tabs',                  " Better tab support for NERDTree
-      \ {'on': 'NERDTreeToggle'}
-
 Plug 'vim-airline/vim-airline'                   " Better looking statusline
 Plug 'vim-airline/vim-airline-themes'            " Better looking statusline
-
-Plug 'airblade/vim-gitgutter'                    " Shows +/- next to changed lines in git repo
 
 Plug 'ctrlpvim/ctrlp.vim',                       " Fuzzy file finder
       \ {'on', 'CtrlP'}
@@ -37,11 +30,12 @@ Plug 'w0rp/ale'                                  " Asynchronous linter
 Plug 'scrooloose/nerdcommenter'                  " Comment better
 
 "Plug 'tpope/vim-surround'                        " Surround text with characters
-"NeoBundle 'Raimondi/delimitMate'                 " Insert matching delimiters
-"NeoBundle 'tpope/vim-fugitive'                   " Git wrapper for vim
-"NeoBundle 'tpope/vim-repeat'                     " Use . with plugins
-"NeoBundle 'justinmk/vim-sneak'                   " Useful navigation using s{char}{char}
-"NeoBundle 'tpope/vim-unimpaired'                 " Useful pairs of mappings
+"Plug 'Raimondi/delimitMate'                      " Insert matching delimiters
+"Plug 'tpope/vim-fugitive'                        " Git wrapper for vim
+"Plug 'tpope/vim-repeat'                          " Use . with plugins
+"Plug 'justinmk/vim-sneak'                        " Useful navigation using s{char}{char}
+"Plug 'tpope/vim-unimpaired'                      " Useful pairs of mappings
+"Plug 'airblade/vim-gitgutter'                    " Shows +/- next to changed lines in git repo
 
 call plug#end()
 
@@ -128,6 +122,10 @@ nnoremap <C-l> <C-w>l
 " Comment out word under the cursor
 nmap <leader>cw viw<leader>cc
 
+" Open CtrlP in file mode with C-p and in buffer mode with C-b
+nnoremap <C-p> :CtrlP<cr>
+nnoremap <C-b> :CtrlPBuffer<cr>
+
 " ===== Indentation ================================================================================
 set nocopyindent                                 " Don't use structure of current line when copying indent
 set expandtab                                    " Expand tabs into spaces
@@ -161,25 +159,12 @@ nnoremap <leader>hi :call SynStack()<CR>
 " ===== Plugin Settings ============================================================================
 " ==================================================================================================
 
-" ===== NERDTree ===================================================================================
-"TODO
-let NERDTreeQuitOnOpen = 1                       " Automatically quit when opening file
-let NERDTreeMinimalUI = 1                        " TODO
-let NERDTreeDirArrows = 1                        " TODO
-let NERDTreeShowLineNumbers = 1                  " Show line numbers in the NERDTree buffer
-
-" Open/close NERDTree with <leader>t
-nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-
 " ===== vim-airline ================================================================================
 set laststatus=2                                 " Last window always has a status line
 let g:airline_detect_paste=1                     " Show PASTE if in paste mode
 let g:airline_powerline_fonts=1                  " Allow use of special symbol fonts
-let g:airline_theme='ubaryd'                     " Set airline color theme
-
-"TODO: tagbar
-let g:airline#extensions#hunks#enabled=1         " Show git info
-let g:airline#extensions#hunks#non_zero_only=0   " Always show git info
+let g:airline_theme='ravenpower'                 " Set airline color theme
+"Others: base16_chalk, base16_default
 
 let g:airline#extensions#tabline#enabled=1       " Show vim-airline for tabs as well
 let g:airline#extensions#tabline#left_sep=' '    " Use straight tabs
@@ -189,12 +174,24 @@ let g:airline#extensions#quickfix#enabled=1      " Display proper titles for loc
 let g:airline#extensions#whitespace#enabled=1    " Detect whitespace errors
 
 " ===== vim-gitgutter ==============================================================================
-hi clear SignColumn                              " Clear background of non-changed lines in the gutter
+"hi clear SignColumn                              " Clear background of non-changed lines in the gutter
 
 " ===== ctrlp.vim==== ==============================================================================
-"TODO
 let g:ctrlp_map='<c-p>'                          " Remap c-p to run CtrlP plugin
 let g:ctrlp_cmd='CtrlP'                          " Default command for c-p mapping
+let g:ctrlp_match_window='max:20'                " More results in the window
+let g:ctrlp_show_hidden=1                        " Show dotfiles
+let g:ctrlp_max_depth=10                         " Limit search directory depth
+let g:ctrlp_lazy_update=50                       " Wait a bit after typing to update search
+let g:ctrlp_open_multiple_files=0                " Disable multi-open mode
+let g:ctrlp_match_current_file=1                 " Include current file in match entires
+
+" Ignore certain directories and file extensions
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/]\.(git)$',
+  \ 'file': '\v\.(o)$',
+  \ 'link': ''
+  \ }
 
 " ===== vim-cpp-enhanced-highlight =================================================================
 let g:cpp_class_scope_highlight = 1              " Highlight class scopes
