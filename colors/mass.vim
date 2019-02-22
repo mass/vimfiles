@@ -34,8 +34,12 @@ hi NonText         ctermfg=196         ctermbg=black       cterm=bold
 hi Normal          ctermfg=178         ctermbg=233         cterm=NONE
 hi Search          ctermfg=NONE        ctermbg=239         cterm=bold
 hi Visual          ctermfg=NONE        ctermbg=NONE        cterm=reverse
-"Conceal CursorIM Directory DiffAdd DiffChange DiffDelete DiffText EndOfBuffer
-"ErrorMsg VertSplit Folded FoldColumn SignColumn IncSearch CursorLineNr
+hi DiffAdd         ctermfg=2           ctermbg=NONE        cterm=NONE
+hi DiffChange      ctermfg=3           ctermbg=NONE        cterm=NONE
+hi DiffDelete      ctermfg=1           ctermbg=NONE        cterm=NONE
+hi SignColumn      ctermfg=NONE        ctermbg=NONE        cterm=NONE
+"Conceal CursorIM Directory DiffText EndOfBuffer
+"ErrorMsg VertSplit Folded FoldColumn IncSearch CursorLineNr
 "ModeMsg MoreMsg Pmenu PmenuSel PmenuSbar PmenuThumb Question SpecialKey
 "SpellBad SpellCap SpellLocal SpellRare StatusLine StatusLineNC TabLine
 "TabLineFill TabLineSel Title VisualNOS WarningMsg WildMenu
