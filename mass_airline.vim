@@ -1,7 +1,7 @@
 " ==================================================================================================
-" File: autoload/mass_airline.vim
+" File: mass_airline.vim
 " Author: Andrew Mass <amass1212@gmail.com>
-" Created: 2019-02-01
+" Created: 2019-02-21
 " ==================================================================================================
 " [guifg, guibg, ctermfg, ctermbg, opts]
 
@@ -45,5 +45,5 @@ let g:airline#themes#mass_airline#palette.tabline = {
   \ 'airline_tabfill': s:HID,
   \ 'airline_tabmod': s:RED,
   \ 'airline_tabmod_unsel': s:DRED,
-  \ 'airline_tablavel': s:HIDI,
+  \ 'airline_tablabel': s:HIDI,
   \ }
