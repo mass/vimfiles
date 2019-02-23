@@ -47,30 +47,34 @@ filetype plugin indent on                        " Turns on filetype-specific pl
 syntax on                                        " Turns on syntax highlighting
 
 set autoindent                                   " Copy indent from current line when starting a new line
-set nobackup                                     " Don't backup buffers
 set backspace=indent,eol,start                   " Backspace over everything
-set cryptmethod=blowfish                         " Use stronger cyrpt method
+set nobackup                                     " Don't backup buffers
+set belloff="all"                                " Turn off the bell
+set cryptmethod=blowfish2                        " Use strongest cyrpt method
 set encoding=utf-8                               " Use utf-8 as character encoding
+set noesckeys                                    " Don't allow use of <ESC> as a modifier (No delay to recognize <ESC>)
+set fixeol                                       " Force newlines at end of files
 set fsync                                        " Ensure write to disk after save
 set hidden                                       " Can switch buffers without saving
-set history=100                                  " Keep 100 lines of history
+set history=100                                  " Keep N lines of history
 set ignorecase                                   " Ignore case in search strings
 set incsearch                                    " Show matching as search string is typed
-set mouse=a                                      " Use the mouse in all modes
-set ruler                                        " Show cursor position always
-set scrolloff=5                                  " Don't let the cursor touch the edge of the viewport
+set mouse=""                                     " Don't use/capture the mouse (so text can be selected/pasted/etc.)
+set mousehide                                    " Hide mouse after typing until moved
+set noruler                                      " Don't show the ruler (not needed with airline)
+set scrolloff=10                                 " Don't let the cursor touch the edge of the viewport
 set showcmd                                      " Display incomplete commands as they are typed
 set splitbelow                                   " New windows go below the current
 set splitright                                   " New windows go right of the current
 set nostartofline                                " Keep cursor in the same column with certain moves
 set noswapfile                                   " Don't use a swap file for buffers
 set tildeop                                      " Use ~ to toggle case
-set timeoutlen=1000                              " Wait 500ms for mapping delays
-set ttimeoutlen=20                               " Wait 20ms for key code delays
-set title                                        " Show filename title at the top
+set timeoutlen=500                               " Wait Nms for mapping delays
+set ttimeoutlen=20                               " Wait Nms for key code delays
+set notitle                                      " Don't show filename title at the top
 set ttyfast                                      " Optimize for faster terminal connections
 set ttymouse=sgr                                 " Fix mouse interaction for larger screens
-set undolevels=100                               " Maximum of 100 undo/redo changes
+set undolevels=100                               " Maximum of N undo/redo changes
 set novisualbell                                 " Don't use the visual bell
 set nowritebackup                                " Don't backup buffer writes
 
@@ -79,12 +83,13 @@ set background=dark                              " Use dark background
 set colorcolumn=80,100,120                       " Draw reference line at columns 80, 100, 120
 set cursorcolumn                                 " Draw reference line at current column
 set cursorline                                   " Draw reference line at current line
+set hlsearch                                     " Highlight search matches
 set number                                       " Use line numbers
 set numberwidth=5                                " Use 5 columns for line numbers
 set norelativenumber                             " Disable relative numbers
+let &showbreak="++++ "                           " Visually indicate lines that have been wrapped
 set noshowmode                                   " Don't display an arbitrary --INSERT--
 set showtabline=2                                " Always show tab line
-set hlsearch                                     " Highlight search matches
 
 colorscheme mass                                 " Change colorscheme. Do this before any custom changes
 
@@ -95,7 +100,7 @@ nnoremap <space> <nop>
 let mapleader = " "
 
 " Quick reload of vimrc
-nnoremap <silent> <leader>R :so ~/.vimrc<cr>
+nnoremap <silent> <leader>r :so ~/.vimrc<cr>
 
 " More logical mapping for Y
 nnoremap Y y$
@@ -125,6 +130,9 @@ nmap <leader>cw viw<leader>cc
 " Open CtrlP in file mode with C-p and in buffer mode with C-b
 nnoremap <C-p> :CtrlP<cr>
 nnoremap <C-b> :CtrlPBuffer<cr>
+
+" Toggle PASTE mode
+map <C-i> :set invpaste<cr>
 
 " ===== Indentation ================================================================================
 set nocopyindent                                 " Don't use structure of current line when copying indent
@@ -164,11 +172,14 @@ set laststatus=2                                 " Last window always has a stat
 let g:airline_detect_paste=1                     " Show PASTE if in paste mode
 let g:airline_powerline_fonts=1                  " Allow use of special symbol fonts
 let g:airline_theme='mass_airline'               " Set airline color theme
+let g:airline_skip_empty_sections=1              " Dont draw separators for error sections
 
 let g:airline#extensions#tabline#enabled=1       " Show vim-airline for tabs as well
 let g:airline#extensions#tabline#left_sep=' '    " Use straight tabs
 let g:airline#extensions#tabline#left_alt_sep='|' " Use straight tabs
 
+let g:airline#extensions#keymap#enabled=0        " Dont show the current keymap
+let g:airline#extensions#po#enabled=0            " Dont show translations messages
 let g:airline#extensions#quickfix#enabled=1      " Display proper titles for loclist
 let g:airline#extensions#whitespace#enabled=1    " Detect whitespace errors
 
@@ -197,11 +208,8 @@ let g:cpp_experimental_template_highlight = 1    " Highlight template functions
 let g:ale_echo_msg_format='(%linter%)[%severity%]: %s' " Format of echo (bottom) message
 let g:ale_echo_msg_error_str='ERROR'             " Message shown for errors
 let g:ale_echo_msg_warning_str='WARN'            " Message shown for warnings
-
-"let g:ale_open_list=1                            " Automatically open the loclist if errors found
-
+let g:ale_open_list=1                            " Automatically open the loclist if errors found
 let g:ale_lint_on_save=1                         " Run the linters on save always
-"let g:ale_linters = {'cpp': 'all'}               " Set the linters to use for various filetypes
 let g:ale_linters = {'cpp': ['cppcheck']}        " Set the linters to use for various filetypes
 let g:ale_cpp_gcc_options='-std=c++11 -Wall'     " Change options sent to gcc for c++ files
 let g:ale_cpp_cppcheck_options='--enable=style'  " Change options sent to gcc for c++ files

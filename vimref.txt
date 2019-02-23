@@ -10,11 +10,13 @@ Navigation
 
 File / Buffer Management
 #############################
-<C-p> Open CtrlP fuzzy finder in file mode
-<C-b> Open CtrlP fuzzy finder in buffer (tab) mode
+<C-p>    - Open CtrlP fuzzy finder in file mode
+<C-b>    - Open CtrlP fuzzy finder in buffer (tab) mode
 
 Misc
 #############################
-<l>cw - Comment out word under cursor
-<l>hi - Show currently active highlight groups
-<l>hit - Show highlight group test page
+<C-i>    - Toggle PASTE mode
+<l>cw    - Comment out word under cursor
+<l>hi    - Show currently active highlight groups
+<l>hit   - Show highlight group test page
+<l>r     - Resource vimrc

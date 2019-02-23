@@ -27,10 +27,10 @@ let g:airline#themes#mass_airline#palette.visual   = airline#themes#generate_col
 let g:airline#themes#mass_airline#palette.inactive = airline#themes#generate_color_map(s:DARK, s:DARK, s:DARK)
 
 " Change middle color when buffer is modified
-let g:airline#themes#mass_airline#palette.normal_modified   = { 'airline_c': s:ORG }
-let g:airline#themes#mass_airline#palette.insert_modified   = { 'airline_c': s:ORG }
-let g:airline#themes#mass_airline#palette.replace_modified  = { 'airline_c': s:ORG }
-let g:airline#themes#mass_airline#palette.visual_modified   = { 'airline_c': s:ORG }
+let g:airline#themes#mass_airline#palette.normal_modified   = { 'airline_c': s:DRED }
+let g:airline#themes#mass_airline#palette.insert_modified   = { 'airline_c': s:DRED }
+let g:airline#themes#mass_airline#palette.replace_modified  = { 'airline_c': s:DRED }
+let g:airline#themes#mass_airline#palette.visual_modified   = { 'airline_c': s:DRED }
 let g:airline#themes#mass_airline#palette.inactive_modified = { 'airline_c': s:DGRAY }
 
 " CtrlP
