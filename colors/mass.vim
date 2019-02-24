@@ -44,57 +44,54 @@ hi SignColumn      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 "SpellBad SpellCap SpellLocal SpellRare StatusLine StatusLineNC TabLine
 "TabLineFill TabLineSel Title VisualNOS WarningMsg WildMenu
 
-" ==================================================================================================
-" Custom Highlight Links
-" ==================================================================================================
-
-
-
-
-
-"TODO: Reorganize below
-
 " Syntax highlighting
 hi Comment         ctermfg=gray        ctermbg=NONE        cterm=NONE
+hi Constant        ctermfg=cyan        ctermbg=NONE        cterm=NONE
 hi String          ctermfg=33          ctermbg=NONE        cterm=NONE
 hi Number          ctermfg=39          ctermbg=NONE        cterm=NONE
-"hi Ignore          ctermfg=NONE        ctermbg=NONE        cterm=NONE
-"hi Error           ctermfg=white       ctermbg=red         cterm=NONE
-"hi Keyword         ctermfg=194         ctermbg=NONE        cterm=NONE
-hi PreProc         ctermfg=white       ctermbg=NONE        cterm=NONE
-"hi Conditional     ctermfg=194         ctermbg=NONE        cterm=NONE
-hi Todo            ctermfg=black       ctermbg=yellow      cterm=bold
-hi Constant        ctermfg=cyan        ctermbg=NONE        cterm=NONE
 hi Identifier      ctermfg=cyan        ctermbg=NONE        cterm=NONE
 hi Function        ctermfg=red         ctermbg=NONE        cterm=NONE
-hi Type            ctermfg=40          ctermbg=NONE        cterm=NONE
 hi Statement       ctermfg=194         ctermbg=NONE        cterm=NONE
+hi Conditional     ctermfg=white       ctermbg=NONE        cterm=bold
+hi Operator        ctermfg=white       ctermbg=NONE        cterm=bold
+hi Keyword         ctermfg=194         ctermbg=NONE        cterm=NONE
+hi Keyword         ctermfg=white       ctermbg=NONE        cterm=NONE
+hi PreProc         ctermfg=white       ctermbg=NONE        cterm=NONE
+hi Type            ctermfg=40          ctermbg=NONE        cterm=NONE
 hi Special         ctermfg=166         ctermbg=NONE        cterm=NONE
 hi Delimiter       ctermfg=white       ctermbg=NONE        cterm=NONE
-hi Operator        ctermfg=white       ctermbg=NONE        cterm=NONE
-hi LongLineWarning ctermfg=NONE        ctermbg=NONE        cterm=underline
-
-hi link Character Constant
-hi link Boolean Constant
-hi link Float Number
-hi link Repeat Statement
-hi link Label Statement
-hi link Exception Statement
-hi link Include PreProc
-hi link Define PreProc
-hi link Macro PreProc
-hi link PreCondit PreProc
-hi link StorageClass Special
-hi link Structure Type
-hi link Typedef Type
-hi link Tag Special
-hi link SpecialChar Special
-hi link SpecialComment Special
-hi link Debug Special
+hi Underlined      ctermfg=38          ctermbg=NONE        cterm=underline
+hi Ignore          ctermfg=238         ctermbg=NONE        cterm=NONE
+hi Error           ctermfg=white       ctermbg=red         cterm=NONE
+hi Todo            ctermfg=black       ctermbg=white       cterm=bold
+hi LongLineWarning ctermfg=NONE        ctermbg=52          cterm=underline
 
 " Special for C
 hi cFunction       ctermfg=brown       ctermbg=NONE        cterm=NONE
 hi cIdentifier     ctermfg=brown       ctermbg=NONE        cterm=NONE
+
+" ==================================================================================================
+" Custom Highlight Links
+" ==================================================================================================
+
+" Syntax highlighting
+hi link Character         Constant
+hi link Boolean           Constant
+hi link Float             Number
+hi link Repeat            Statement
+hi link Label             Statement
+hi link Exception         Statement
+hi link Include           PreProc
+hi link Define            PreProc
+hi link Macro             PreProc
+hi link PreCondit         PreProc
+hi link StorageClass      Special
+hi link Structure         Type
+hi link Typedef           Type
+hi link SpecialChar       Special
+hi link Tag               Special
+hi link SpecialComment    Special
+hi link Debug             Special
 
 " CtrlP
 hi link CtrlPMatch        Search

@@ -93,6 +93,18 @@ set showtabline=2                                " Always show tab line
 
 colorscheme mass                                 " Change colorscheme. Do this before any custom changes
 
+" ===== Indentation ================================================================================
+set nocopyindent                                 " Don't use structure of current line when copying indent
+set expandtab                                    " Expand tabs into spaces
+set shiftwidth=2                                 " Number of spaces for each step of indent
+set smartindent                                  " Indent intelligently when inserting a newline
+set smarttab                                     " <Tab> in front of line inserts smart number of spaces
+set softtabstop=2                                " Proper indentation in insert mode
+set tabstop=2                                    " Number of spaces that a tab counts for
+
+" ===== Folding ====================================================================================
+"TODO
+
 " ===== Keymaps ====================================================================================
 
 " Use <space> as <leader>
@@ -132,21 +144,7 @@ nnoremap <C-p> :CtrlP<cr>
 nnoremap <C-b> :CtrlPBuffer<cr>
 
 " Toggle PASTE mode
-map <C-i> :set invpaste<cr>
-
-" ===== Indentation ================================================================================
-set nocopyindent                                 " Don't use structure of current line when copying indent
-set expandtab                                    " Expand tabs into spaces
-set shiftwidth=2                                 " Number of spaces for each step of indent
-set smartindent                                  " Indent intelligently when inserting a newline
-set smarttab                                     " <Tab> in front of line inserts smart number of spaces
-set softtabstop=2                                " Proper indentation in insert mode
-set tabstop=2                                    " Number of spaces that a tab counts for
-
-" ===== Folding ====================================================================================
-"TODO
-
-" ===== Misc =======================================================================================
+nnoremap <silent> <leader>p :set invpaste<cr>
 
 " Highlight trailing whitespace
 match ErrorMsg '\s\+\%#\@<!$'
@@ -155,13 +153,17 @@ match ErrorMsg '\s\+\%#\@<!$'
 nnoremap <silent> <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar> :let @/=_s<Bar>:nohl<CR>
 
 " Show highlight group test script
-nnoremap <leader>hit :so $VIMRUNTIME/syntax/hitest.vim<CR>
+nnoremap <leader>ht :so $VIMRUNTIME/syntax/hitest.vim<CR>
 
 " Show currently active highlight groups
 function! SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 nnoremap <leader>hi :call SynStack()<CR>
+
+" Open and close loclist
+nnoremap <silent> <leader>l :lopen<cr>
+nnoremap <silent> <leader>; :lclose<cr>
 
 " ==================================================================================================
 " ===== Plugin Settings ============================================================================
@@ -182,6 +184,7 @@ let g:airline#extensions#keymap#enabled=0        " Dont show the current keymap
 let g:airline#extensions#po#enabled=0            " Dont show translations messages
 let g:airline#extensions#quickfix#enabled=1      " Display proper titles for loclist
 let g:airline#extensions#whitespace#enabled=1    " Detect whitespace errors
+let g:airline#extensions#ale#enabled=1           " Show ale error count
 
 " ===== ctrlp.vim==== ==============================================================================
 let g:ctrlp_map='<c-p>'                          " Remap c-p to run CtrlP plugin
@@ -205,12 +208,17 @@ let g:cpp_class_scope_highlight = 1              " Highlight class scopes
 let g:cpp_experimental_template_highlight = 1    " Highlight template functions
 
 " ===== ale ========================================================================================
+let g:ale_open_list=0                            " Don't automatically open the loclist if errors found
+let g:ale_lint_on_enter=1                        " Run the linters on entering a buffer
+let g:ale_lint_on_save=1                         " Run the linters on save always
+let g:ale_lint_on_text_changed='never'           " Don't lint during typing
+let g:ale_sign_column_always=1                   " Keep the sign column (gutter) open always
+let g:ale_history_enabled=0                      " Don't remember last commands
 let g:ale_echo_msg_format='(%linter%)[%severity%]: %s' " Format of echo (bottom) message
 let g:ale_echo_msg_error_str='ERROR'             " Message shown for errors
 let g:ale_echo_msg_warning_str='WARN'            " Message shown for warnings
-let g:ale_open_list=1                            " Automatically open the loclist if errors found
-let g:ale_lint_on_save=1                         " Run the linters on save always
 let g:ale_linters = {'cpp': ['cppcheck']}        " Set the linters to use for various filetypes
+
 let g:ale_cpp_gcc_options='-std=c++11 -Wall'     " Change options sent to gcc for c++ files
 let g:ale_cpp_cppcheck_options='--enable=style'  " Change options sent to gcc for c++ files
 
