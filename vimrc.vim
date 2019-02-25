@@ -18,24 +18,13 @@ call plug#begin('~/.vim/plug')
 
 Plug 'vim-airline/vim-airline'                   " Better looking statusline
 Plug 'vim-airline/vim-airline-themes'            " Better looking statusline
-
 Plug 'ctrlpvim/ctrlp.vim',                       " Fuzzy file finder
       \ {'on', 'CtrlP'}
-
 Plug 'octol/vim-cpp-enhanced-highlight',         " Better c++ syntax highlighting
       \ {'for': 'cpp'}
-
 Plug 'w0rp/ale'                                  " Asynchronous linter
-
 Plug 'scrooloose/nerdcommenter'                  " Comment better
-
 Plug 'mhinz/vim-signify'                         " See git diffs in sign column
-
-"Plug 'tpope/vim-surround'                        " Surround text with characters
-"Plug 'Raimondi/delimitMate'                      " Insert matching delimiters
-"Plug 'tpope/vim-repeat'                          " Use . with plugins
-"Plug 'justinmk/vim-sneak'                        " Useful navigation using s{char}{char}
-"Plug 'tpope/vim-unimpaired'                      " Useful pairs of mappings
 
 call plug#end()
 
@@ -87,7 +76,7 @@ set hlsearch                                     " Highlight search matches
 set number                                       " Use line numbers
 set numberwidth=5                                " Use 5 columns for line numbers
 set norelativenumber                             " Disable relative numbers
-let &showbreak="++++ "                           " Visually indicate lines that have been wrapped
+let &showbreak="++++"                            " Visually indicate lines that have been wrapped
 set noshowmode                                   " Don't display an arbitrary --INSERT--
 set showtabline=2                                " Always show tab line
 
