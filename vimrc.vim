@@ -154,6 +154,17 @@ nnoremap <leader>hi :call SynStack()<CR>
 nnoremap <silent> <leader>l :lopen<cr>
 nnoremap <silent> <leader>; :lclose<cr>
 
+" ===== Misc =======================================================================================
+
+" Disable trying to highlight embedded HTML in an YAML file
+augroup standard
+  autocmd!
+  autocmd BufEnter *.yaml
+        \ syntax region yamlHtmlIgnore start='<html>' end='</html>' |
+        \ highlight def link yamlHtmlIgnore Normal |
+        \ syntax sync fromstart
+augroup END
+
 " ==================================================================================================
 " ===== Plugin Settings ============================================================================
 " ==================================================================================================
