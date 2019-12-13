@@ -18,13 +18,18 @@ call plug#begin('~/.vim/plug')
 
 Plug 'vim-airline/vim-airline'                   " Better looking statusline
 Plug 'vim-airline/vim-airline-themes'            " Better looking statusline
-Plug 'ctrlpvim/ctrlp.vim',                       " Fuzzy file finder
-      \ {'on', 'CtrlP'}
-Plug 'octol/vim-cpp-enhanced-highlight',         " Better c++ syntax highlighting
-      \ {'for': 'cpp'}
+Plug 'ctrlpvim/ctrlp.vim',
+      \ {'on': 'CtrlP'}                          " Fuzzy file finder
+Plug 'octol/vim-cpp-enhanced-highlight',
+      \ {'for': 'cpp'}                           " Better c++ syntax highlighting
 Plug 'w0rp/ale'                                  " Asynchronous linter
 Plug 'scrooloose/nerdcommenter'                  " Comment better
 Plug 'mhinz/vim-signify'                         " See git diffs in sign column
+
+if executable('ctags')
+  Plug 'vim-scripts/taglist.vim',
+       \ {'on': 'TlistToggle'}                   " Explore tags and browse source
+endif
 
 call plug#end()
 
@@ -58,6 +63,7 @@ set splitbelow                                   " New windows go below the curr
 set splitright                                   " New windows go right of the current
 set nostartofline                                " Keep cursor in the same column with certain moves
 set noswapfile                                   " Don't use a swap file for buffers
+set tags=./tags;/                                " Look upwards for tags file
 set tildeop                                      " Use ~ to toggle case
 set timeout                                      " Timeout on :mappings
 set timeoutlen=500                               " Wait Nms for mapping delays
@@ -133,9 +139,10 @@ nnoremap <C-l> <C-w>l
 " Comment out word under the cursor
 nmap <leader>cw viw<leader>cc
 
-" Open CtrlP in file mode with C-p and in buffer mode with C-b
+" Open CtrlP in various modes
 nnoremap <C-p> :CtrlP<cr>
 nnoremap <C-b> :CtrlPBuffer<cr>
+nnoremap <C-t> :CtrlPTag<cr>
 
 " Toggle PASTE mode
 nnoremap <silent> <leader>p :set invpaste<cr>
@@ -143,8 +150,8 @@ nnoremap <silent> <leader>p :set invpaste<cr>
 " Highlight trailing whitespace
 match ErrorMsg '\s\+\%#\@<!$'
 
-" Strip trailing whitespace with <leader>s
-nnoremap <silent> <leader>s :let _s=@/<Bar>:%s/\s\+$//e<Bar> :let @/=_s<Bar>:nohl<CR>
+" Strip trailing whitespace with <leader>w
+nnoremap <silent> <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar> :let @/=_s<Bar>:nohl<CR>
 
 " Show highlight group test script
 nnoremap <leader>ht :so $VIMRUNTIME/syntax/hitest.vim<CR>
@@ -158,6 +165,13 @@ nnoremap <leader>hi :call SynStack()<CR>
 " Open and close loclist
 nnoremap <silent> <leader>l :lopen<cr>
 nnoremap <silent> <leader>; :lclose<cr>
+
+" Jump to tag under cursor
+nnoremap <silent> <leader>t <C-]>
+" Jump backwards in tag stack
+nnoremap <silent> <leader>s :pop<cr>
+" Toggle taglist window
+nnoremap <silent> <leader>i :TlistToggle<cr>
 
 " ===== Misc =======================================================================================
 
@@ -230,3 +244,10 @@ let g:ale_cpp_cppcheck_options='--enable=style'  " Change options sent to gcc fo
 " ===== signify ====================================================================================
 let g:signify_vcs_list = [ 'git' ]               " Don't waste time trying other VCSs
 let g:signify_sign_delete = ''                   " Don't use the default delete symbol
+
+" ===== taglist ====================================================================================
+let Tlist_Close_On_Select = 1                    " Close taglist window after selection
+let Tlist_Display_Tag_Scope = 0                  " Don't display redundant scope
+let Tlist_Enable_Fold_Column = 0                 " Don't show ugly folding column
+let Tlist_Exit_OnlyWindow = 1                    " Exit vim if this is the only window left
+let Tlist_WinWidth = 40                          " Wider taglist window

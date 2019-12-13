@@ -12,8 +12,10 @@ File / Buffer Management
 #############################
 <C-p>    - Open CtrlP fuzzy finder in file mode
 <C-b>    - Open CtrlP fuzzy finder in buffer (tab) mode
+<C-t>    - Open CtrlP fuzzy finder in tag mode
 <l>l     - Open the loclist (ale errors)
 <l>;     - Close the loclist (ale errors)
+<l>i     - Toggle the taglist
 
 Misc
 #############################
@@ -21,4 +23,6 @@ Misc
 <l>cw    - Comment out word under cursor
 <l>hi    - Show currently active highlight groups
 <l>ht    - Show highlight group test page
-<l>r     - Resource vimrc
+<l>r     - Re-source vimrc
+<l>t     - Jump to tag under cursor
+<l>s     - Jump back in tag stack
