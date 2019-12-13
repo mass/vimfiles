@@ -35,7 +35,6 @@ call plug#end()
 filetype plugin indent on                        " Turns on filetype-specific plugins and indent files
 syntax on                                        " Turns on syntax highlighting
 
-set autoindent                                   " Copy indent from current line when starting a new line
 set backspace=indent,eol,start                   " Backspace over everything
 set nobackup                                     " Don't backup buffers
 set belloff="all"                                " Turn off the bell
@@ -48,17 +47,21 @@ set hidden                                       " Can switch buffers without sa
 set history=100                                  " Keep N lines of history
 set ignorecase                                   " Ignore case in search strings
 set incsearch                                    " Show matching as search string is typed
+set lazyredraw                                   " Don't redraw during macro execution
 set mouse=""                                     " Don't use/capture the mouse (so text can be selected/pasted/etc.)
 set mousehide                                    " Hide mouse after typing until moved
 set noruler                                      " Don't show the ruler (not needed with airline)
 set scrolloff=10                                 " Don't let the cursor touch the edge of the viewport
 set showcmd                                      " Display incomplete commands as they are typed
+set smartcase                                    " Don't ignore case when searching with capital letters
 set splitbelow                                   " New windows go below the current
 set splitright                                   " New windows go right of the current
 set nostartofline                                " Keep cursor in the same column with certain moves
 set noswapfile                                   " Don't use a swap file for buffers
 set tildeop                                      " Use ~ to toggle case
+set timeout                                      " Timeout on :mappings
 set timeoutlen=500                               " Wait Nms for mapping delays
+set ttimeout                                     " Timeout on key codes
 set ttimeoutlen=20                               " Wait Nms for key code delays
 set notitle                                      " Don't show filename title at the top
 set ttyfast                                      " Optimize for faster terminal connections
@@ -70,7 +73,7 @@ set nowritebackup                                " Don't backup buffer writes
 " ===== Appearance =================================================================================
 set background=dark                              " Use dark background
 set colorcolumn=80,100,120                       " Draw reference line at columns 80, 100, 120
-set cursorcolumn                                 " Draw reference line at current column
+set nocursorcolumn                               " Don't draw reference line at current column (high CPU usage)
 set cursorline                                   " Draw reference line at current line
 set hlsearch                                     " Highlight search matches
 set number                                       " Use line numbers
@@ -83,6 +86,7 @@ set showtabline=2                                " Always show tab line
 colorscheme mass                                 " Change colorscheme. Do this before any custom changes
 
 " ===== Indentation ================================================================================
+set autoindent                                   " Copy indent from current line when starting a new line
 set nocopyindent                                 " Don't use structure of current line when copying indent
 set expandtab                                    " Expand tabs into spaces
 set shiftwidth=2                                 " Number of spaces for each step of indent
@@ -93,6 +97,7 @@ set tabstop=2                                    " Number of spaces that a tab c
 
 " ===== Folding ====================================================================================
 "TODO
+set nofoldenable                                 " Disable folding
 
 " ===== Keymaps ====================================================================================
 
