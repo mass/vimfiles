@@ -18,8 +18,7 @@ call plug#begin('~/.vim/plug')
 
 Plug 'vim-airline/vim-airline'                   " Better looking statusline
 Plug 'vim-airline/vim-airline-themes'            " Better looking statusline
-Plug 'ctrlpvim/ctrlp.vim',
-      \ {'on': 'CtrlP'}                          " Fuzzy file finder
+Plug 'ctrlpvim/ctrlp.vim'                        " Fuzzy file finder
 Plug 'octol/vim-cpp-enhanced-highlight',
       \ {'for': 'cpp'}                           " Better c++ syntax highlighting
 Plug 'w0rp/ale'                                  " Asynchronous linter
