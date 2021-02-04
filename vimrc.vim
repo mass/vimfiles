@@ -24,6 +24,8 @@ Plug 'octol/vim-cpp-enhanced-highlight',
 Plug 'w0rp/ale'                                  " Asynchronous linter
 Plug 'scrooloose/nerdcommenter'                  " Comment better
 Plug 'mhinz/vim-signify'                         " See git diffs in sign column
+Plug 'rust-lang/rust.vim',
+      \ {'for': 'rust'}                          " Rust language support
 
 if executable('ctags')
   Plug 'vim-scripts/taglist.vim',

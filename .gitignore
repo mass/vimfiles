@@ -5,3 +5,5 @@ plug/*
 spell/
 
 .netrwhist
+
+autoload/plug.vim.old
