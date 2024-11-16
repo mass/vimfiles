@@ -13,8 +13,8 @@ File / Buffer Management
 <C-p>    - Open CtrlP fuzzy finder in file mode
 <C-b>    - Open CtrlP fuzzy finder in buffer (tab) mode
 <C-t>    - Open CtrlP fuzzy finder in tag mode
-<l>l     - Open the loclist (ale errors)
-<l>;     - Close the loclist (ale errors)
+<l>l     - Open the loclist
+<l>;     - Close the loclist
 <l>i     - Toggle the taglist
 
 Misc

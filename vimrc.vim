@@ -21,11 +21,8 @@ Plug 'vim-airline/vim-airline-themes'            " Better looking statusline
 Plug 'ctrlpvim/ctrlp.vim'                        " Fuzzy file finder
 Plug 'octol/vim-cpp-enhanced-highlight',
       \ {'for': 'cpp'}                           " Better c++ syntax highlighting
-Plug 'w0rp/ale'                                  " Asynchronous linter
 Plug 'scrooloose/nerdcommenter'                  " Comment better
 Plug 'mhinz/vim-signify'                         " See git diffs in sign column
-Plug 'rust-lang/rust.vim',
-      \ {'for': 'rust'}                          " Rust language support
 
 if executable('ctags')
   Plug 'vim-scripts/taglist.vim',
@@ -204,7 +201,6 @@ let g:airline#extensions#keymap#enabled=0        " Dont show the current keymap
 let g:airline#extensions#po#enabled=0            " Dont show translations messages
 let g:airline#extensions#quickfix#enabled=1      " Display proper titles for loclist
 let g:airline#extensions#whitespace#enabled=1    " Detect whitespace errors
-let g:airline#extensions#ale#enabled=1           " Show ale error count
 
 " ===== ctrlp.vim==== ==============================================================================
 let g:ctrlp_map='<c-p>'                          " Remap c-p to run CtrlP plugin
@@ -226,21 +222,6 @@ let g:ctrlp_custom_ignore = {
 " ===== vim-cpp-enhanced-highlight =================================================================
 let g:cpp_class_scope_highlight = 1              " Highlight class scopes
 let g:cpp_experimental_template_highlight = 1    " Highlight template functions
-
-" ===== ale ========================================================================================
-let g:ale_open_list=0                            " Don't automatically open the loclist if errors found
-let g:ale_lint_on_enter=1                        " Run the linters on entering a buffer
-let g:ale_lint_on_save=1                         " Run the linters on save always
-let g:ale_lint_on_text_changed='never'           " Don't lint during typing
-let g:ale_sign_column_always=1                   " Keep the sign column (gutter) open always
-let g:ale_history_enabled=0                      " Don't remember last commands
-let g:ale_echo_msg_format='(%linter%)[%severity%]: %s' " Format of echo (bottom) message
-let g:ale_echo_msg_error_str='ERROR'             " Message shown for errors
-let g:ale_echo_msg_warning_str='WARN'            " Message shown for warnings
-let g:ale_linters = {'cpp': ['cppcheck']}        " Set the linters to use for various filetypes
-
-let g:ale_cpp_gcc_options='-std=c++11 -Wall'     " Change options sent to gcc for c++ files
-let g:ale_cpp_cppcheck_options='--enable=style'  " Change options sent to gcc for c++ files
 
 " ===== signify ====================================================================================
 let g:signify_vcs_list = [ 'git' ]               " Don't waste time trying other VCSs
