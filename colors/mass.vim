@@ -45,7 +45,7 @@ hi SignColumn      ctermfg=NONE        ctermbg=NONE        cterm=NONE
 "TabLineFill TabLineSel Title VisualNOS WarningMsg WildMenu
 
 " Syntax highlighting
-hi Comment         ctermfg=gray        ctermbg=NONE        cterm=NONE
+hi Comment         ctermfg=gray        ctermbg=NONE        cterm=italic
 hi Constant        ctermfg=cyan        ctermbg=NONE        cterm=NONE
 hi String          ctermfg=33          ctermbg=NONE        cterm=NONE
 hi Number          ctermfg=39          ctermbg=NONE        cterm=NONE
@@ -63,7 +63,7 @@ hi Delimiter       ctermfg=white       ctermbg=NONE        cterm=NONE
 hi Underlined      ctermfg=38          ctermbg=NONE        cterm=underline
 hi Ignore          ctermfg=238         ctermbg=NONE        cterm=NONE
 hi Error           ctermfg=white       ctermbg=red         cterm=NONE
-hi Todo            ctermfg=black       ctermbg=white       cterm=bold
+hi Todo            ctermfg=black       ctermbg=white       cterm=bold,italic,underline
 hi LongLineWarning ctermfg=NONE        ctermbg=52          cterm=underline
 
 " Special for C
