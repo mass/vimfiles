@@ -21,8 +21,8 @@ Plug 'vim-airline/vim-airline-themes'            " Better looking statusline
 Plug 'ctrlpvim/ctrlp.vim'                        " Fuzzy file finder
 Plug 'octol/vim-cpp-enhanced-highlight',
       \ {'for': 'cpp'}                           " Better c++ syntax highlighting
-Plug 'scrooloose/nerdcommenter'                  " Comment better
 Plug 'mhinz/vim-signify'                         " See git diffs in sign column
+Plug 'ojroques/vim-oscyank'                      " Pathway from vim to clipboard via OSC52
 
 if executable('ctags')
   Plug 'vim-scripts/taglist.vim',
@@ -134,8 +134,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Comment out word under the cursor
-nmap <leader>cw viw<leader>cc
+" Yank selected text in visual mode into the system clipboard via OSC52
+vmap <leader>c :OSCYankVisual<cr>
 
 " Open CtrlP in various modes
 nnoremap <C-p> :CtrlP<cr>
@@ -181,6 +181,8 @@ augroup standard
         \ highlight def link yamlHtmlIgnore Normal |
         \ syntax sync fromstart
 augroup END
+
+let g:c_no_curly_error = 1                       " Hide common false positive brace errors
 
 " ==================================================================================================
 " ===== Plugin Settings ============================================================================
