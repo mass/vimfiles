@@ -71,6 +71,7 @@ set notitle                                      " Don't show filename title at 
 set ttyfast                                      " Optimize for faster terminal connections
 set ttymouse=sgr                                 " Fix mouse interaction for larger screens
 set undolevels=100                               " Maximum of N undo/redo changes
+set updatetime=1000                              " Async event interval and whatnot
 set novisualbell                                 " Don't use the visual bell
 set nowritebackup                                " Don't backup buffer writes
 
@@ -226,8 +227,7 @@ let g:cpp_class_scope_highlight = 1              " Highlight class scopes
 let g:cpp_experimental_template_highlight = 1    " Highlight template functions
 
 " ===== signify ====================================================================================
-let g:signify_vcs_list = [ 'git' ]               " Don't waste time trying other VCSs
-let g:signify_sign_delete = ''                   " Don't use the default delete symbol
+let g:signify_skip = {'vcs':{'allow':['git']}}   " Don't waste time trying other VCSs
 
 " ===== taglist ====================================================================================
 let Tlist_Close_On_Select = 1                    " Close taglist window after selection
